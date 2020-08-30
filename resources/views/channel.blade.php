@@ -9,7 +9,7 @@
         @isset($messages)
             <ul>
             @foreach($messages as $messages)
-                <li>$message</li>
+                <li>{{ $message->getBody() }}</li>
             @endforeach
             </ul>
         @endif
