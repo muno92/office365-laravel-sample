@@ -14,6 +14,7 @@ class TeamsController extends Controller
 
         // Create a Graph client
         $graph = new Graph();
+        $graph->setApiVersion("beta");
         $graph->setAccessToken($accessToken);
 
         $url = '/teams/' . env("TEAM_ID") . '/channels';
