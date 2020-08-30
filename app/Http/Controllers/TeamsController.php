@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TokenStore\TokenCache;
+use Illuminate\Support\Facades\Log;
 use Microsoft\Graph\Graph;
 
 class TeamsController extends Controller
@@ -14,13 +15,16 @@ class TeamsController extends Controller
 
         // Create a Graph client
         $graph = new Graph();
-        $graph->setApiVersion("beta");
         $graph->setAccessToken($accessToken);
 
         $url = '/teams/' . env("TEAM_ID") . '/channels';
 
-        $channels = $graph->createRequest('GET', $url)
-            ->execute();
+        $channels = $graph->createRequest('GET', $url);
+
+        Log::info('Request Header', $channels->getHeaders());
+        Log::info('Request Body', $channels->getBody());
+
+        $channels->execute();
 
         return response()->json($channels);
     }
