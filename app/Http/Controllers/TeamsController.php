@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\TokenStore\TokenCache;
 use Microsoft\Graph\Graph;
+use Microsoft\Graph\Model\Channel;
 
 class TeamsController extends Controller
 {
-    public function channel()
+    public function index()
     {
+        $viewData = $this->loadViewData();
+
         $tokenCache = new TokenCache();
         $accessToken = $tokenCache->getAccessToken();
 
@@ -19,8 +22,10 @@ class TeamsController extends Controller
         $url = '/teams/' . env("TEAM_ID") . '/channels';
 
         $channels = $graph->createRequest('GET', $url)
+            ->setReturnType(Channel::class)
             ->execute();
 
-        return response()->json($channels->getBody());
+        $viewData['channels'] = $channels;
+        return view('teams', $viewData);
     }
 }

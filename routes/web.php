@@ -20,4 +20,4 @@ Route::get('/callback', 'AuthController@callback');
 
 Route::get('/calendar', 'CalendarController@calendar');
 
-Route::get('/teams', 'TeamsController@channel');
+Route::get('/teams', 'TeamsController@index');
