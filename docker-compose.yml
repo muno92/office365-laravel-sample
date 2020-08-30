@@ -1,0 +1,29 @@
+version: "3.8"
+volumes:
+  db-store:
+  php-fpm-socket:
+services:
+  app:
+    container_name: office365-sample-app
+    build: ./docker/php
+    image: office365-sample-app
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - .:/var/www:cached
+  web:
+    container_name: office365-sample-web
+    build: ./docker/nginx
+    image: office365-sample-web
+    ports:
+      - "8080:80"
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - .:/var/www:cached
+  db:
+    container_name: office365-sample-db
+    build: ./docker/postgresql
+    image: office365-sample-db
+    volumes:
+      - db-store:/var/lib/pgsql
+    ports:
+      - "15432:5432"
