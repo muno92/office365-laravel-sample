@@ -17,7 +17,7 @@
         @isset($channels)
             @foreach($channels as $channel)
                 <tr>
-                    <td><a href="/teams/channel/{{ $channel->getId() }}">{{ $channel->getDisplayName() }}</a></td>
+                    <td><a href="{{ route('$channel', [$channel->getId()]) }}">{{ $channel->getDisplayName() }}</a></td>
                     <td>{{ $channel->getDescription() }}</td>
                 </tr>
             @endforeach
