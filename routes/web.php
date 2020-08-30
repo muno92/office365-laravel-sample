@@ -22,4 +22,4 @@ Route::get('/signout', 'AuthController@signout');
 Route::get('/calendar', 'CalendarController@calendar');
 
 Route::get('/teams', 'TeamsController@index');
-Route::get('/teams/channel/{$id}', 'TeamsController@channel');
+Route::get('/teams/channel/', 'TeamsController@channel');

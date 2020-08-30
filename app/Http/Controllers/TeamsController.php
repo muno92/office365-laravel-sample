@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TokenStore\TokenCache;
+use Illuminate\Http\Request;
 use Microsoft\Graph\Graph;
 use Microsoft\Graph\Model\Channel;
 use Microsoft\Graph\Model\ChatMessage;
@@ -30,7 +31,7 @@ class TeamsController extends Controller
         return view('teams', $viewData);
     }
 
-    public function channel(string $id)
+    public function channel(Request $request)
     {
         $viewData = $this->loadViewData();
 
@@ -40,6 +41,9 @@ class TeamsController extends Controller
         // Create a Graph client
         $graph = new Graph();
         $graph->setAccessToken($accessToken);
+
+        $paths = explode('/', $request->getRequestUri());
+        $id = $paths[array_key_last($paths)];
 
         $url = '/teams/' . env("TEAM_ID") . '/channels/' . $id . '/messages';
 
