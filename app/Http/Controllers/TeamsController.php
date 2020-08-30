@@ -22,7 +22,6 @@ class TeamsController extends Controller
         $channels = $graph->createRequest('GET', $url);
 
         Log::info('Request Header', $channels->getHeaders());
-        Log::info('Request Body', $channels->getBody());
 
         $channels->execute();
 
