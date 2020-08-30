@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@welcome');
+
+Route::get('/signin', 'AuthController@signin');
+Route::get('/callback', 'AuthController@callback');
+
+Route::get('/calendar', 'CalendarController@calendar');
