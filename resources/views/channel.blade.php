@@ -8,7 +8,7 @@
     <h1>Channel Messages</h1>
         @isset($messages)
             <ul>
-            @foreach($messages as $messages)
+            @foreach($messages as $message)
                 <li>{{ $message->getBody() }}</li>
             @endforeach
             </ul>
