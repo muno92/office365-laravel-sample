@@ -17,7 +17,9 @@ Route::get('/', 'HomeController@welcome');
 
 Route::get('/signin', 'AuthController@signin');
 Route::get('/callback', 'AuthController@callback');
+Route::get('/signout', 'AuthController@signout');
 
 Route::get('/calendar', 'CalendarController@calendar');
 
 Route::get('/teams', 'TeamsController@index');
+Route::get('/teams/channel/{$id}', 'TeamsController@channel');
